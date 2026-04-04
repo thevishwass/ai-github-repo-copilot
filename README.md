@@ -11,7 +11,7 @@
  ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝      ╚═════╝ ╚═════╝╚═╝     ╚═╝╚══════╝ ╚═════╝   ╚═╝   
 ```
 
-### *Ask anything about any codebase — in plain English.*
+### *Ask anything about any codebase in plain English.*
 
 <br/>
 
@@ -401,14 +401,15 @@ Backend   →  http://localhost:5000
 <div align="center">
 
 **Vishwas Singh**
+
 *Engineering Student · Software Developer*
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yourusername)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/yourprofile)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/thevishwass/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/vishwassingh15/)
 
 <br/>
 
-*Built with curiosity, caffeine, and vectors.*
+*Built with curiosity, caffeine, and vectors.* :)
 
 </div>
 
