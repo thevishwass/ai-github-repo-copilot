@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-border {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@layer base {
+  html {
+    @apply bg-gray-950;
+  }
+}
+
+body {
+  font-feature-settings: "cv02","cv03","cv04","cv11";
+}
