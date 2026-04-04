@@ -416,5 +416,5 @@ Backend   →  http://localhost:5000
 ---
 
 <div align="center">
-<sub>© 2025 Vishwas Singh · MIT License</sub>
+<sub>© 2026 Vishwas Singh · MIT License</sub>
 </div>
