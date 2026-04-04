@@ -23,7 +23,7 @@
 
 <br/>
 
-> An AI-powered developer tool that analyzes any GitHub repository and lets you **ask natural language questions about the codebase** — powered by RAG, vector search, and LLM reasoning.
+> An AI-powered developer tool that analyzes any GitHub repository and lets you **ask natural language questions about the codebase** - powered by RAG, vector search, and LLM reasoning.
 
 <br/>
 
@@ -31,136 +31,136 @@
 
 ---
 
-## ✦ What Is This?
+## What Is This?
 
-**AI GitHub Repo Copilot** clones any public GitHub repository, processes its source code into vector embeddings, stores them in a vector database, and uses **Retrieval-Augmented Generation (RAG)** to answer your questions about the project — with source attribution for every response.
+**AI GitHub Repo Copilot** clones any public GitHub repository, processes its source code into vector embeddings, stores them in a vector database, and uses **Retrieval-Augmented Generation (RAG)** to answer your questions about the project - with source attribution for every response.
 
 > No more reading through hundreds of files manually. Just ask.
 
 ---
 
-## ✦ Features
+## Features
 
 | Feature | Description |
 |---|---|
-| 🔍 **Any Public Repo** | Paste any GitHub URL and start exploring |
-| 🤖 **AI Codebase Q&A** | Ask natural language questions about architecture, logic, and flow |
-| 📎 **Source Attribution** | Every answer links back to the exact file it came from |
-| 📊 **Repo Metadata** | Stars, forks, language breakdown, watchers |
-| 🖥️ **Code Preview** | Interactive inline preview for referenced files |
-| 🔐 **Auth System** | JWT-based signup / login with protected routes |
-| 📱 **Responsive UI** | Works on all screen sizes |
+| **Any Public Repo** | Paste any GitHub URL and start exploring |
+| **AI Codebase Q&A** | Ask natural language questions about architecture, logic, and flow |
+| **Source Attribution** | Every answer links back to the exact file it came from |
+| **Repo Metadata** | Stars, forks, language breakdown, watchers |
+| **Code Preview** | Interactive inline preview for referenced files |
+| **Auth System** | JWT-based signup / login with protected routes |
+| **Responsive UI** | Works on all screen sizes |
 
 ---
 
-## ✦ Example Questions
+## Example Questions
 
 ```
-❯ How does authentication work?
-❯ Explain the routing logic.
-❯ Where is the database connection implemented?
-❯ Which files handle API requests?
-❯ How does the resume parser work?
-❯ Explain the overall project architecture.
+> How does authentication work?
+> Explain the routing logic.
+> Where is the database connection implemented?
+> Which files handle API requests?
+> How does the resume parser work?
+> Explain the overall project architecture.
 ```
 
 ---
 
-## ✦ System Architecture
+## System Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                     AI GitHub Repo Copilot                      │
-└─────────────────────────────────────────────────────────────────┘
++---------------------------------------------------------------------+
+|                       AI GitHub Repo Copilot                        |
++---------------------------------------------------------------------+
 
   User Input: GitHub URL
-        │
-        ▼
-┌──────────────────┐
-│ Repository Clone │  ← git clone via GitHub API
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐
-│  File Scanner    │  ← filters .js .ts .py .md .json etc.
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐
-│  Code Chunker    │  ← splits files into ~500-800 token chunks
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────────────────┐
-│  Embedding Generation        │  ← Xenova/all-MiniLM-L6-v2
-│  (384-dim vectors per chunk) │     
-└────────┬─────────────────────┘
-         │
-         ▼
-┌──────────────────┐
-│ Pinecone Vector  │  ← stores embeddings + metadata
-│    Database      │
-└────────┬─────────┘
-         │
+        |
+        v
++------------------+
+| Repository Clone |  <- git clone via GitHub API
++--------+---------+
+         |
+         v
++------------------+
+|  File Scanner    |  <- filters .js .ts .py .md .json etc.
++--------+---------+
+         |
+         v
++------------------+
+|  Code Chunker    |  <- splits files into ~500-800 token chunks
++--------+---------+
+         |
+         v
++------------------------------+
+|  Embedding Generation        |  <- Xenova/all-MiniLM-L6-v2
+|  (384-dim vectors per chunk) |
++--------+---------------------+
+         |
+         v
++------------------+
+| Pinecone Vector  |  <- stores embeddings + metadata
+|    Database      |
++--------+---------+
+         |
     [ User asks a question ]
-         │
-         ▼
-┌──────────────────┐
-│ Semantic Search  │  ← query → embedding → top-k vector match
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐
-│  LLM (DeepSeek)  │  ← context + question → answer
-│  via OpenRouter  │
-└────────┬─────────┘
-         │
-         ▼
+         |
+         v
++------------------+
+| Semantic Search  |  <- query -> embedding -> top-k vector match
++--------+---------+
+         |
+         v
++------------------+
+|  LLM (DeepSeek)  |  <- context + question -> answer
+|  via OpenRouter  |
++--------+---------+
+         |
+         v
    AI Response + Sources
 ```
 
 ---
 
-## ✦ Tech Stack
+## Tech Stack
 
-### 🖼 Frontend
+### Frontend
 ```
-React (Vite)         — UI framework
-TailwindCSS          — Styling
-React Router         — Client-side routing
-React Markdown       — Rendering AI responses
-```
-
-### ⚙️ Backend
-```
-Node.js              — Runtime
-Express.js           — REST API server
+React (Vite)         - UI framework
+TailwindCSS          - Styling
+React Router         - Client-side routing
+React Markdown       - Rendering AI responses
 ```
 
-### 🧠 AI & Embeddings
+### Backend
 ```
-DeepSeek LLM         — Language model (via OpenRouter)
-all-MiniLM-L6-v2     — Sentence embedding model (Xenova)
-384 dimensions       — Embedding vector size
-```
-
-### 🗄️ Data & Storage
-```
-Pinecone             — Vector database for semantic search
-MongoDB Atlas        — User authentication storage
+Node.js              - Runtime
+Express.js           - REST API server
 ```
 
-### 🔗 External APIs
+### AI & Embeddings
 ```
-GitHub REST API      — Repo metadata, stars, forks, languages
-OpenRouter           — LLM API gateway
+DeepSeek LLM         - Language model (via OpenRouter)
+all-MiniLM-L6-v2     - Sentence embedding model (Xenova)
+384 dimensions       - Embedding vector size
+```
+
+### Data & Storage
+```
+Pinecone             - Vector database for semantic search
+MongoDB Atlas        - User authentication storage
+```
+
+### External APIs
+```
+GitHub REST API      - Repo metadata, stars, forks, languages
+OpenRouter           - LLM API gateway
 ```
 
 ---
 
-## ✦ Core Pipeline (Deep Dive)
+## Core Pipeline (Deep Dive)
 
-### Step 1 — Repository Ingestion
+### Step 1 - Repository Ingestion
 
 ```
 POST /api/analyze
@@ -171,7 +171,7 @@ The backend clones the repository locally using `git clone`.
 
 ---
 
-### Step 2 — File Scanning
+### Step 2 - File Scanning
 
 Only relevant files are extracted:
 
@@ -182,7 +182,7 @@ Ignored directories:   node_modules/  .git/  dist/  build/
 
 ---
 
-### Step 3 — Code Parsing
+### Step 3 - Code Parsing
 
 Each file is structured into a document object:
 
@@ -195,12 +195,12 @@ Each file is structured into a document object:
 
 ---
 
-### Step 4 — Chunking
+### Step 4 - Chunking
 
 Large files are split into smaller chunks for LLM compatibility:
 
 ```
-Chunk size: ~500–800 tokens
+Chunk size: ~500-800 tokens
 Strategy:   Sliding window with overlap
 ```
 
@@ -214,7 +214,7 @@ Strategy:   Sliding window with overlap
 
 ---
 
-### Step 5 — Embedding Generation
+### Step 5 - Embedding Generation
 
 Each chunk is converted to a 384-dimensional vector:
 
@@ -226,7 +226,7 @@ Output: Float32 array [0.021, -0.143, 0.087, ..., 0.034]
 
 ---
 
-### Step 6 — Vector Storage (Pinecone)
+### Step 6 - Vector Storage (Pinecone)
 
 ```json
 {
@@ -242,11 +242,11 @@ Output: Float32 array [0.021, -0.143, 0.087, ..., 0.034]
 
 ---
 
-### Step 7 — RAG Query Flow
+### Step 7 - RAG Query Flow
 
 ```
-User question  →  Embed question  →  Pinecone similarity search
-      →  Retrieve top-k chunks  →  Build LLM prompt  →  DeepSeek generates answer
+User question  ->  Embed question  ->  Pinecone similarity search
+      ->  Retrieve top-k chunks  ->  Build LLM prompt  ->  DeepSeek generates answer
 ```
 
 **Prompt structure:**
@@ -270,7 +270,7 @@ How does resume parsing work?
 
 ---
 
-## ✦ GitHub API Integration
+## GitHub API Integration
 
 Metadata fetched per repository:
 
@@ -291,7 +291,7 @@ Metadata fetched per repository:
 
 ---
 
-## ✦ Authentication
+## Authentication
 
 ```
 Strategy:  JWT (JSON Web Tokens)
@@ -302,38 +302,38 @@ Guards:    Protected middleware on all analysis routes
 
 ---
 
-## ✦ Project Structure
+## Project Structure
 
 ```
 AI_GitHub_Repo_ChatBot/
-│
-├── frontend/
-│   ├── components/          # Reusable UI components
-│   ├── pages/               # Route-level page components
-│   └── api/                 # Axios API client
-│
-├── backend/
-│   ├── routes/              # Express route handlers
-│   │   ├── auth.js          # Login / Signup
-│   │   └── analyze.js       # Repo ingestion + Q&A
-│   ├── services/
-│   │   ├── cloner.js        # Git clone logic
-│   │   ├── scanner.js       # File traversal
-│   │   ├── chunker.js       # Text chunking
-│   │   ├── embedder.js      # Vector embedding
-│   │   ├── pinecone.js      # Vector DB operations
-│   │   └── llm.js           # OpenRouter LLM calls
-│   └── config/
-│       └── db.js            # MongoDB connection
-│
-├── .env                     # Environment variables (not committed)
-├── .gitignore
-└── README.md
+|
++-- frontend/
+|   +-- components/          # Reusable UI components
+|   +-- pages/               # Route-level page components
+|   +-- api/                 # Axios API client
+|
++-- backend/
+|   +-- routes/              # Express route handlers
+|   |   +-- auth.js          # Login / Signup
+|   |   +-- analyze.js       # Repo ingestion + Q&A
+|   +-- services/
+|   |   +-- cloner.js        # Git clone logic
+|   |   +-- scanner.js       # File traversal
+|   |   +-- chunker.js       # Text chunking
+|   |   +-- embedder.js      # Vector embedding
+|   |   +-- pinecone.js      # Vector DB operations
+|   |   +-- llm.js           # OpenRouter LLM calls
+|   +-- config/
+|       +-- db.js            # MongoDB connection
+|
++-- .env                     # Environment variables (not committed)
++-- .gitignore
++-- README.md
 ```
 
 ---
 
-## ✦ Local Setup
+## Local Setup
 
 ### 1. Clone the repo
 
@@ -376,13 +376,13 @@ npm run dev
 ```
 
 ```
-Frontend  →  http://localhost:5173
-Backend   →  http://localhost:5000
+Frontend  ->  http://localhost:5173
+Backend   ->  http://localhost:5000
 ```
 
 ---
 
-## ✦ Roadmap
+## Roadmap
 
 ```
 [ ] Repository architecture auto-summary on load
@@ -396,7 +396,7 @@ Backend   →  http://localhost:5000
 
 ---
 
-## ✦ Author
+## Author
 
 <div align="center">
 
@@ -409,7 +409,7 @@ Backend   →  http://localhost:5000
 
 <br/>
 
-*Built with curiosity, caffeine, and vectors.* :)
+*Built with curiosity, caffeine, and vectors.*
 
 </div>
 
