@@ -119,6 +119,7 @@ Use * to bold an important word.
 
     const answer = completion.choices[0].message.content
     // console.log(answer)
+    // yes
 
     return res.json({
       answer,
