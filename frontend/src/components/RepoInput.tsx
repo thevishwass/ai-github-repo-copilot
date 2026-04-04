@@ -34,7 +34,7 @@ export default function RepoInput({ setResult, setRepoUrl }: any) {
       </label> */}
 
       {/* Animated Border Wrapper */}
-      <div className="relative w-full max-w-[560px]">
+      <div className="absolute self-center w-full max-w-[560px]">
 
         {/* Gradient animated border */}
         {!url && (
