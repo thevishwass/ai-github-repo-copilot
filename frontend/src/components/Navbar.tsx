@@ -9,7 +9,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   const linkStyle = (path: string) =>
-    `text-sm font-medium transition ${
+    `text-m font-medium transition ${
       location.pathname === path
         ? "text-white"
         : "text-gray-400 hover:text-gray-200"

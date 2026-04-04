@@ -40,8 +40,8 @@ router.post("/", async (req, res) => {
 
     const repoId = extractRepoId(repoUrl)
 
-    console.log("User question:", question)
-    console.log("Searching repo:", repoId)
+    // console.log("User question:", question)
+    // console.log("Searching repo:", repoId)
 
     // create embedding for question
     const questionVector = await createEmbedding(question)
@@ -60,7 +60,7 @@ router.post("/", async (req, res) => {
 
     const matches = queryResponse.matches || []
 
-    console.log("Matches returned:", matches.length)
+    // console.log("Matches returned:", matches.length)
 
     if (matches.length === 0) {
       return res.json({
@@ -83,8 +83,8 @@ router.post("/", async (req, res) => {
 
     // call LLM
     const completion = await client.chat.completions.create({
-      model: "openrouter/auto",
-      temperature: 0.2,
+      model: "openrouter/free",
+      temperature: 0.1,
       messages: [
         {
           role: "system",
@@ -118,6 +118,7 @@ Use * to bold an important word.
     })
 
     const answer = completion.choices[0].message.content
+    // console.log(answer)
 
     return res.json({
       answer,

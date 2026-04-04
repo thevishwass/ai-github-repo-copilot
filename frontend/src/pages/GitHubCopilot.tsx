@@ -26,17 +26,17 @@ export default function GitHubCopilot() {
     <div className="dark min-h-screen bg-gray-950 text-gray-200 flex flex-col md:flex-row">
 
       {/* Sidebar */}
-<div className="w-full md:w-[280px] border-b md:border-b-0 md:border-r border-gray-800 p-6">
+<div className="w-full md:w-[280px]  border-b md:border-b-0 md:border-r border-gray-800 p-6">
 
   {/* <h2 className="text-2xl font-semibold mb-5 mt-4 text-center">
     GitHub Copilot
   </h2> */}
 
-  <div className="text-xs text-gray-300 mb-3 mt-4 uppercase tracking-wider text-center">
+  <div className="text-xs text-gray-300  mb-3 mt-4 uppercase tracking-wider text-center">
     Active Repository
   </div>
 
-  <div className="bg-gray-900 border text-center border-gray-800 rounded-lg px-3 py-2 text-sm sm:text-[15px] mb-6">
+  <div className="bg-black border text-white text-center border-gray-800 rounded-lg px-3 py-2 text-sm sm:text-[13px] mb-6">
     {repoSlug || "None"}
   </div>
 
