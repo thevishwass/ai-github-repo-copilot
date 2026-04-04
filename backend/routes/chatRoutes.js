@@ -8,7 +8,7 @@ const OpenAI = require("openai")
 // OpenRouter client
 const client = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
-  apiKey: "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"
+  apiKey: process.env.OPENROUTER_API_KEY
 })
 
 // Pinecone client
