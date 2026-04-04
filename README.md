@@ -338,7 +338,7 @@ AI_GitHub_Repo_ChatBot/
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/yourusername/ai-github-repo-copilot.git
+git clone https://github.com/thevishwass/ai-github-repo-copilot.git
 cd ai-github-repo-copilot
 ```
 
