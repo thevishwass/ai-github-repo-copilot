@@ -5,7 +5,6 @@ const connectDB = require("./config/db.js")
 require("dotenv").config()
 
 const express = require("express")
-const cors = require("cors")
 
 const repoRoutes = require("./routes/repoRoutes")
 const chatRoutes = require("./routes/chatRoutes")
@@ -13,7 +12,6 @@ const chatRoutes = require("./routes/chatRoutes")
 const authRoutes = require("./routes/authRoutes")
 const app = express()
 
-app.use(cors())
 app.use(express.json())
 
 app.use("/api/repo", repoRoutes)
@@ -31,6 +29,7 @@ console.log(typeof scanFiles)
 
 const cors = require("cors")
 
+app.use(cors())
 app.use(
   cors({
     origin: [
