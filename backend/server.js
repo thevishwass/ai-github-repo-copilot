@@ -29,7 +29,7 @@ console.log(typeof cloneRepo, "Hi")
 console.log(typeof scanFiles)
 
 
-import cors from "cors"
+const cors = require("cors")
 
 app.use(
   cors({
