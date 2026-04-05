@@ -1,9 +1,7 @@
-import axios from "axios"
-
-const API = "http://localhost:5000"
+import { api } from "./axios"
 
 export const analyzeRepo = async (repoUrl: string) => {
-  const res = await axios.post(`${API}/api/repo/analyze`, {
+  const res = await api.post("/api/repo/analyze", {
     repoUrl
   })
 

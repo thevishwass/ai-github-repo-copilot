@@ -1,37 +1,23 @@
-export const loginUser = async (email: string, password: string) => {
+import { api } from "./axios"
 
-  const res = await fetch("http://localhost:5000/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ email, password })
+export const loginUser = async (email: string, password: string) => {
+  const res = await api.post("/api/auth/login", {
+    email,
+    password
   })
 
-  if (!res.ok) {
-    throw new Error("Login failed")
-  }
+  console.log("API URL:", import.meta.env.VITE_API_URL)
 
-  return res.json()
+  return res.data
 }
 
 export const signupUser = async (name: string, email: string, password: string) => {
-
-  const res = await fetch("http://localhost:5000/api/auth/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name,
-      email,
-      password
-    })
+  const res = await api.post("/api/auth/signup", {
+    name,
+    email,
+    password
   })
 
-  if (!res.ok) {
-    throw new Error("Signup failed")
-  }
-
-  return res.json()
+  return res.data
 }
+
