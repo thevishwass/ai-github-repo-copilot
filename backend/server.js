@@ -28,12 +28,25 @@ app.get("/", (req, res) => {
 console.log(typeof cloneRepo, "Hi")
 console.log(typeof scanFiles)
 
-const PORT = 5000
+
+import cors from "cors"
+
+app.use(
+  cors({
+    origin: [
+      "*"
+    ],
+    credentials: true
+  })
+)
+
 
 
 dotenv.config()
 
 connectDB()
+
+const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
  console.log(`Server is running O_O`)
