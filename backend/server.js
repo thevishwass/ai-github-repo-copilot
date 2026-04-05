@@ -1,5 +1,4 @@
-const dotenv = require("dotenv")
-dotenv.config()
+require("dotenv").config()
 
 const express = require("express")
 const cors = require("cors")
@@ -12,10 +11,17 @@ const authRoutes = require("./routes/authRoutes")
 
 const app = express()
 
-// CORS
-app.use(cors({
-  origin: "*"
-}))
+// CORS (allow local + deployed frontend)
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://ai-github-repo-copilot.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+  })
+)
 
 app.use(express.json())
 
@@ -24,14 +30,16 @@ app.use("/api/repo", repoRoutes)
 app.use("/api/chat", chatRoutes)
 app.use("/api/auth", authRoutes)
 
+// health route
 app.get("/", (req, res) => {
   res.send("Server is running")
 })
 
+// connect DB
 connectDB()
 
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
-  console.log("Server is running O_O")
+  console.log(`Server running on port ${PORT}`)
 })
