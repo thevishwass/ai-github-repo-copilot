@@ -8,6 +8,7 @@ export default function RepoInput({ setResult, setRepoUrl }: any) {
 
   const handleAnalyze = async () => {
     if (!url.trim()) return
+
     setLoading(true)
 
     try {
@@ -16,9 +17,9 @@ export default function RepoInput({ setResult, setRepoUrl }: any) {
       setRepoUrl(url)
     } catch (err) {
       console.error(err)
+    } finally {
+      setLoading(false)
     }
-
-    setLoading(false)
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -26,26 +27,21 @@ export default function RepoInput({ setResult, setRepoUrl }: any) {
   }
 
   return (
-    <div className="flex flex-col gap-2 w-fit">
+    <div className="flex flex-col items-center gap-3 w-full">
 
-      {/* Label */}
-      {/* <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider ml-1">
-        GitHub Repository URL
-      </label> */}
-
-      {/* Animated Border Wrapper */}
-      <div className="absolute self-center w-full max-w-[560px]">
+      {/* Wrapper */}
+      <div className="relative w-full max-w-[560px]">
 
         {/* Gradient animated border */}
         {!url && (
-  <div
-    className="absolute -inset-[2.5px] rounded-2xl opacity-90"
-    style={{
-      background: 'conic-gradient(from var(--angle), #6366f1, #22c55e, #06b6d4, #a855f7, #f59e0b, #6366f1)',
-      animation: 'spin-border 3s linear infinite',
-    }}
-  />
-)}
+          <div
+            className="absolute -inset-[2.5px] rounded-2xl opacity-90"
+            style={{
+              background: 'conic-gradient(from var(--angle), #6366f1, #22c55e, #06b6d4, #a855f7, #f59e0b, #6366f1)',
+              animation: 'spin-border 3s linear infinite',
+            }}
+          />
+        )}
 
         {/* Input container */}
         <div
@@ -150,9 +146,17 @@ export default function RepoInput({ setResult, setRepoUrl }: any) {
           </button>
 
         </div>
+
       </div>
-<p className="text-sm italic text-gray-500 text-center">
-  Large repositories may take a little longer to process.
-</p>    </div>
+
+      <p className="text-sm italic text-gray-300 text-center mb-0">
+        Large repositories may take a little longer to process.
+      </p>
+
+      <p className="text-xs text-yellow-400 text-center mt-0">
+        Note: The backend runs on a free server and may take ~30–60 seconds to wake on the first request.
+      </p>
+
+    </div>
   )
 }

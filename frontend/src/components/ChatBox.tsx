@@ -138,7 +138,7 @@ export default function ChatBox({ repoUrl }: ChatBoxProps) {
   }
 
   return (
-    <div className="mt-12 w-full max-w-[820px] mx-auto">
+    <div className="mt-0 w-full max-w-[820px] mx-auto">
 
       {/* Input Section */}
       <div className="relative w-full">
