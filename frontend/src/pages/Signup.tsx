@@ -14,6 +14,8 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [loading, setLoading] = useState(false)
 
+  const [isColdStart, setIsColdStart] = useState(true)
+
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -28,8 +30,9 @@ export default function Signup() {
 
       const data = await signupUser(name, email, password)
 
-      // login user through context
       login(data.token, data.user)
+
+      setIsColdStart(false)
 
       navigate("/github-copilot")
 
@@ -49,7 +52,6 @@ export default function Signup() {
 
       <div className="w-full max-w-md bg-gray-900 border border-gray-800 rounded-xl p-8 shadow-xl">
 
-        {/* Title */}
         <div className="text-center mb-8">
           <h1 className="text-2xl font-semibold text-white">
             Create account
@@ -60,10 +62,8 @@ export default function Signup() {
           </p>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSignup} className="flex flex-col gap-4">
 
-          {/* Name */}
           <div>
             <label className="text-sm text-gray-400 mb-1 block">
               Name
@@ -79,7 +79,6 @@ export default function Signup() {
             />
           </div>
 
-          {/* Email */}
           <div>
             <label className="text-sm text-gray-400 mb-1 block">
               Email
@@ -95,7 +94,6 @@ export default function Signup() {
             />
           </div>
 
-          {/* Password */}
           <div>
             <label className="text-sm text-gray-400 mb-1 block">
               Password
@@ -111,7 +109,6 @@ export default function Signup() {
             />
           </div>
 
-          {/* Confirm Password */}
           <div>
             <label className="text-sm text-gray-400 mb-1 block">
               Confirm Password
@@ -127,26 +124,32 @@ export default function Signup() {
             />
           </div>
 
-          {/* Button */}
           <button
             type="submit"
             disabled={loading}
             className="mt-2 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg text-sm font-medium transition disabled:opacity-60"
           >
-            {loading ? "Creating Account..." : "Create Account"}
+            {loading
+              ? isColdStart
+                ? "Waking server... please wait"
+                : "Creating Account..."
+              : "Create Account"}
           </button>
+
+          <p className="text-xs text-yellow-400 text-center mt-2">
+            Note: The backend runs on a free server and may take ~30–60 seconds to start on the first request.
+          </p>
 
         </form>
 
-        {/* Footer */}
-        <p className="text-m text-gray-500 text-center mt-6">
+        <p className="text-m text-gray-500 text-center mt-4">
           Already have an account?{" "}
           <Link to="/login" className="text-blue-400 hover:underline">
             Login
           </Link>
         </p>
 
-        <p className="text-m text-gray-100 text-center mt-3">
+        <p className="text-m text-gray-100 text-center mt-4">
           <Link to="/" className="hover:text-gray-400">
             ← Back to Home
           </Link>

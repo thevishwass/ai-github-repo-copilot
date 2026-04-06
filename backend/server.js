@@ -14,10 +14,9 @@ const app = express()
 // CORS (allow local + deployed frontend)
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://ai-github-repo-copilot.vercel.app"
-    ],
+    origin: 
+      "*"
+    ,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
   })
@@ -25,14 +24,20 @@ app.use(
 
 app.use(express.json())
 
+
 // routes
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" })
+})
+
 app.use("/api/repo", repoRoutes)
 app.use("/api/chat", chatRoutes)
 app.use("/api/auth", authRoutes)
 
-// health route
-app.get("/", (req, res) => {
-  res.send("Server is running")
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" })
 })
 
 // connect DB

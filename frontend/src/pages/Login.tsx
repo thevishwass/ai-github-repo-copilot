@@ -13,6 +13,8 @@ export default function Login() {
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
 
+  const [isColdStart, setIsColdStart] = useState(true)
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -22,8 +24,9 @@ export default function Login() {
 
       const data = await loginUser(email, password)
 
-      // Use AuthContext login
       login(data.token, data.user)
+
+      setIsColdStart(false)
 
       navigate("/github-copilot")
 
@@ -95,8 +98,17 @@ export default function Login() {
             disabled={loading}
             className="mt-2 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg text-sm font-medium transition disabled:opacity-60"
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading
+              ? isColdStart
+                ? "Waking server... please wait"
+                : "Logging in..."
+              : "Login"}
           </button>
+
+          {/* Backend wakeup note */}
+          <p className="text-xs text-yellow-400 text-center mt-2">
+            Note: The backend is hosted on a free server and may take ~30–60 seconds to start on the first request.
+          </p>
 
         </form>
 
