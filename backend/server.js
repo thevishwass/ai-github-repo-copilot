@@ -11,22 +11,18 @@ const authRoutes = require("./routes/authRoutes")
 
 const app = express()
 
-// CORS (allow local + deployed frontend)
+// middleware
 app.use(
   cors({
-    origin: 
-      "*"
-    ,
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
   })
 )
 
-app.use(express.json())
+app.use(express.json({ limit: "10mb" }))
 
-
-// routes
-
+// health check
 app.get("/", (req, res) => {
   res.send("Server is running")
 })
@@ -35,20 +31,25 @@ app.get("/health", (req, res) => {
   res.status(200).json({ status: "ok" })
 })
 
+// routes
 app.use("/api/repo", repoRoutes)
 app.use("/api/chat", chatRoutes)
 app.use("/api/auth", authRoutes)
 
-
-app.get("/health", (req, res) => {
-  res.status(200).json({ status: "ok" })
+// error handler
+app.use((err, req, res, next) => {
+  console.error(err)
+  res.status(500).json({ message: "Server Error" })
 })
-
-// connect DB
-connectDB()
 
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+const startServer = async () => {
+  await connectDB()
+
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+  })
+}
+
+startServer()
