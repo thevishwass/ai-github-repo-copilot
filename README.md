@@ -375,9 +375,16 @@ npm run dev
 npm run dev
 ```
 
+### Local
 ```
 Frontend  ->  http://localhost:5173
 Backend   ->  http://localhost:5000
+```
+
+### Production
+```
+Frontend: https://ai-github-repo-copilot.vercel.app
+Backend : https://ai-github-repo-copilot.onrender.com
 ```
 
 ---
