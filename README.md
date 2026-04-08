@@ -26,7 +26,19 @@
 > An AI-powered developer tool that analyzes any GitHub repository and lets you **ask natural language questions about the codebase** - powered by RAG, vector search, and LLM reasoning.
 
 <br/>
+<div align="center">
 
+<br/>
+
+[![Launch App](https://img.shields.io/badge/🚀%20LAUNCH%20APP%20↗-ai--github--repo--copilot.vercel.app-white?style=for-the-badge&labelColor=ffffff&color=ffffff&logoColor=000000)](https://ai-github-repo-copilot.vercel.app/)
+
+<br/>
+
+</div>
+
+<br/>
+
+</div>
 </div>
 
 ---
